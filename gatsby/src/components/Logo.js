@@ -107,15 +107,13 @@ export default function Logo() {
         <span className="est">EST 1994</span>
         <h1>
           <span className="slicks">
-            <span className="letter S">S</span>
-            <span className="letter l">l</span>
-            <span className="letter i">i</span>
-            <span className="letter c">c</span>
-            <span className="letter k">k</span>
-            <span className="letter apos">'</span>
-            <span className="letter s">s</span>
+            <span className="letter S">P</span>
+            <span className="letter l">i</span>
+            <span className="letter i">z</span>
+            <span className="letter c">z</span>
+            <span className="letter k">a</span>
           </span>
-          <span className="slices">slices</span>
+          <span className="slices">Co.</span>
         </h1>
       </div>
     </LogoStyles>
