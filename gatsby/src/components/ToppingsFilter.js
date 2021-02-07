@@ -1,5 +1,29 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
+import styled from 'styled-components';
+
+const ToppingsStyles = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 4rem;
+  a {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 0 1rem;
+    align-items: center;
+    padding: 5px;
+    background: var(--grey);
+    border-radius: 2px;
+    .count {
+      background: white;
+      padding: 2px 5px;
+    }
+    .active {
+      background: var(--yellow);
+    }
+  }
+`;
 
 function countPizzasInToppings(pizzas) {
   // return the pizzas with counts
@@ -33,15 +57,8 @@ function countPizzasInToppings(pizzas) {
 
 export default function ToppingsFilter() {
   // Get a list of all the toppings
-  const { toppings, pizzas } = useStaticQuery(graphql`
+  const { pizzas } = useStaticQuery(graphql`
     query {
-      toppings: allSanityTopping {
-        nodes {
-          name
-          id
-          vegetarian
-        }
-      }
       pizzas: allSanityPizza {
         nodes {
           topping {
@@ -56,8 +73,13 @@ export default function ToppingsFilter() {
   const toppingsWithCounts = countPizzasInToppings(pizzas.nodes);
 
   return (
-    <div>
-      <p>Toppings filter</p>
-    </div>
+    <ToppingsStyles>
+      {toppingsWithCounts.map((topping) => (
+        <Link to={`/topping/${topping.name}`} key={topping.id}>
+          <span className="name">{topping.name}</span>
+          <span className="count">{topping.count}</span>
+        </Link>
+      ))}
+    </ToppingsStyles>
   );
 }
