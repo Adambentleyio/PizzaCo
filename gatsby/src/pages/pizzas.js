@@ -2,18 +2,22 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import PizzaList from '../components/PizzaList';
 import ToppingsFilter from '../components/ToppingsFilter';
+// import SEO from '../components/SEO';
 
-// create functional component and pass in graphQL query as props
-
-export default function PizzasPage({ data }) {
-  // destructured the pizza objct from props.data
-
+export default function PizzasPage({ data, pageContext }) {
   const pizzas = data.pizzas.nodes;
   return (
-    <div>
-      <ToppingsFilter />
+    <>
+      {/* <SEO
+        title={
+          pageContext.topping
+            ? `Pizzas With ${pageContext.topping}`
+            : `All Pizzas`
+        }
+      /> */}
+      <ToppingsFilter activeTopping={pageContext.topping} />
       <PizzaList pizzas={pizzas} />
-    </div>
+    </>
   );
 }
 
