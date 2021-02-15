@@ -60,7 +60,7 @@ async function turnToppingsIntoPages({ graphql, actions }) {
   // 4. pass the topping data to pizzas.js
 }
 
-async function turnBeersAdTurnThemIntoNodes({
+async function turnBeersAndTurnThemIntoNodes({
   actions,
   createNodeId,
   createContentDigest,
@@ -130,7 +130,7 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
 
 export async function sourceNodes(params) {
   // fetch a list of beers from external API and source into Gatsby API
-  await Promise.all([turnBeersAdTurnThemIntoNodes(params)]);
+  await Promise.all([turnBeersAndTurnThemIntoNodes(params)]);
 }
 
 export async function createPages(params) {

@@ -10,7 +10,7 @@ const SliceMasterGrid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 `;
 
-const PersonGrid = styled.div`
+const SliceMasterStyles = styled.div`
   a {
     text-decoration: none;
   }
@@ -35,30 +35,38 @@ const PersonGrid = styled.div`
   }
 `;
 
-export default function SlicemastersPage({ data }) {
+export default function SlicemastersPage({ data, pageContext }) {
   const slicemasters = data.slicemasters.nodes;
   console.log(slicemasters);
   return (
-    <Pagination>
+    <>
+      {/* <SEO title={`Slicemasters - Page ${pageContext.currentPage || 1}`} /> */}
+      <Pagination
+        pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
+        totalCount={data.slicemasters.totalCount}
+        currentPage={pageContext.currentPage || 1}
+        skip={pageContext.skip}
+        base="/slicemasters"
+      />
       <SliceMasterGrid>
         {slicemasters.map((person) => (
-          <PersonGrid key={person.id}>
-            <Link to={`/slicemasters/${person.slug.current}`}>
+          <SliceMasterStyles key={person.id}>
+            <Link to={`/slicemaster/${person.slug.current}`}>
               <h2>
                 <span className="mark">{person.name}</span>
               </h2>
             </Link>
             <Img fluid={person.image.asset.fluid} />
             <p className="description">{person.description}</p>
-          </PersonGrid>
+          </SliceMasterStyles>
         ))}
       </SliceMasterGrid>
-    </Pagination>
+    </>
   );
 }
 
 export const query = graphql`
-  query($skip: Int = 0, $pageSize: Int = 4) {
+  query($skip: Int = 0, $pageSize: Int = 2) {
     slicemasters: allSanityPerson(limit: $pageSize, skip: $skip) {
       totalCount
       nodes {
