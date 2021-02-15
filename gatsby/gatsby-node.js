@@ -71,6 +71,9 @@ async function turnBeersAndTurnThemIntoNodes({
   // 2. create node for each beer
 
   for (const beer of beers) {
+    // conditional check for undefined beers
+    if (!beer.name) return;
+
     const nodeMeta = {
       id: createNodeId(`beer-${beer.name}`),
       parent: null,

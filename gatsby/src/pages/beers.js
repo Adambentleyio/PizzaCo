@@ -24,10 +24,12 @@ const SingleBeerStyles = styled.div`
 `;
 
 export default function BeersPage({ data }) {
-  console.log(data.beers.nodes);
   return (
     <>
-      <h2>We have {data.beers.nodes.length} Beers available. Dine in Only</h2>
+      {/* <SEO title={`Beers! We have ${data.beers.nodes.length} in stock`} /> */}
+      <h2 className="center">
+        We have {data.beers.nodes.length} Beers Available. Dine in Only!
+      </h2>
       <BeerGridStyles>
         {data.beers.nodes.map((beer) => {
           const rating = Math.round(beer.rating.average);
@@ -36,9 +38,12 @@ export default function BeersPage({ data }) {
               <img src={beer.image} alt={beer.name} />
               <h3>{beer.name}</h3>
               {beer.price}
-              <p title={`${rating} out of 5 Stars`}>
-                <span>{`⭐`.repeat(rating)}</span>
-                <span>{`(${rating})`}</span>
+              <p title={`${rating} out of 5 stars`}>
+                {`⭐`.repeat(rating)}
+                <span style={{ filter: `grayscale(100%)` }}>
+                  {`⭐`.repeat(5 - rating)}
+                </span>
+                <span>({beer.rating.reviews})</span>
               </p>
             </SingleBeerStyles>
           );
