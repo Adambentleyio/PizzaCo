@@ -24,7 +24,7 @@ export default function PizzasPage({ data, pageContext }) {
 export const query = graphql`
   query PizzaQuery($toppingRegex: String) {
     pizzas: allSanityPizza(
-      filter: { topping: { elemMatch: { name: { regex: $toppingRegex } } } }
+      filter: { toppings: { elemMatch: { name: { regex: $toppingRegex } } } }
     ) {
       nodes {
         name
@@ -32,7 +32,7 @@ export const query = graphql`
         slug {
           current
         }
-        topping {
+        toppings {
           id
           name
         }

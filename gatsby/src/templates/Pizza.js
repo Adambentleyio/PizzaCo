@@ -17,7 +17,7 @@ export default function SinglePizzaPage({ data: { pizza } }) {
       <div>
         <h2 className="mark">{pizza.name}</h2>
         <ul>
-          {pizza.topping.map((topping) => (
+          {pizza.toppings.map((topping) => (
             <li key={topping.id}>{topping.name}</li>
           ))}
         </ul>
@@ -38,7 +38,7 @@ export const query = graphql`
           }
         }
       }
-      topping {
+      toppings {
         name
         id
         vegetarian

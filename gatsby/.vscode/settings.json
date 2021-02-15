@@ -23,4 +23,7 @@
     "javascript",
     "javascriptreact"
   ],
+  "editor.fontFamily": "Fira Code, Operator Mono, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 12,
 }
