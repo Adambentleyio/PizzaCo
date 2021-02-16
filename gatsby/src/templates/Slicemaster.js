@@ -1,6 +1,7 @@
 import React from 'react';
 import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
+import SEO from '../components/SEO';
 
 export default function SingleSlicemaster({ data: { person } }) {
   console.log(person);
