@@ -7,7 +7,7 @@ const LogoStyles = styled.div`
   transform: translateY(-25%);
   /* This value controls the entire size of the logo*/
   font-size: 6px;
-  font-size: clamp(1px, 0.65vw, 8px);
+  /* font-size: clamp(1px, 0.65vw, 8px); */
   width: 30em;
   height: 30em;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
@@ -88,14 +88,6 @@ const LogoStyles = styled.div`
       --rotate: -12deg;
       --scale: 1.2;
       --translateX: 0.06em;
-    }
-    &.apos {
-      --translateX: 0.1em;
-    }
-    &.s {
-      --rotate: 12deg;
-      --scale: 0.9;
-      --translateY: -0.14em;
     }
   }
 `;

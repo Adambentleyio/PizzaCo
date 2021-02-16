@@ -108,6 +108,16 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
     }
   `);
   // 2. TODO turn each slicemaster into their own page
+  data.slicemasters.nodes.forEach((slicemaster) => {
+    actions.createPage({
+      component: path.resolve('./src/templates/Slicemaster.js'),
+      path: `slicemaster/${slicemaster.slug.current}`,
+      context: {
+        name: slicemaster.person,
+        slug: slicemaster.slug.current,
+      },
+    });
+  });
 
   // 3. Figure out pages required to display all slicemasters
   const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
@@ -142,6 +152,7 @@ export async function createPages(params) {
     turnPizzasIntoPages(params),
     turnToppingsIntoPages(params),
     turnSlicemastersIntoPages(params),
+    // turnSingleSlicemasterIntoPages(params),
   ]);
 
   // 1. pizzas

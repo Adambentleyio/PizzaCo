@@ -25,6 +25,14 @@ const ToppingsStyles = styled.div`
       background: var(--yellow);
     }
   }
+  @media (max-width: 500px) {
+    margin-bottom: 0.25rem;
+    gap: 0.25rem;
+    grid-template-columns: a {
+      font-size: 18px;
+      padding: 2px;
+    }
+  }
 `;
 
 function countPizzasInToppings(pizzas) {

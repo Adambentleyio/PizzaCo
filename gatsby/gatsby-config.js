@@ -4,13 +4,15 @@ dotenv.config({ path: '.env' });
 
 //
 export default {
+  pathPrefix: '/pizza',
   siteMetadata: {
-    title: `Slicks slices`,
-    url: `https://gatsbyImage.pizza`,
-    description: `Best Pizza in Town`,
+    title: `Slicks Slices`,
+    siteUrl: 'https://gatsby.pizza',
+    description: 'The best pizza place in Hamilton!',
   },
 
   plugins: [
+    'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     {
       // use the object syntax when adding plugsin that require options
