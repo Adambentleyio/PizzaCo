@@ -1,13 +1,26 @@
 import React from 'react';
 import useLatestData from '../utils/useLatestData';
-import { HomePageGrid } from '../styles/Grids';
+import { HomePageGrid, ItemsGrid } from '../styles/Grids';
+import LoadingGrid from '../components/LoadingGrid';
 
 function CurrentlySlicing({ slicemasters }) {
-  return <h3> Slicing</h3>;
+  return (
+    <div>
+      {!slicemasters && <LoadingGrid count={4} />}
+      {slicemasters && !slicemasters?.length && (
+        <p>No one is working right now.</p>
+      )}
+    </div>
+  );
 }
 
-function HotSlices() {
-  return <h3> Hot Slices</h3>;
+function HotSlices({ hotSlices }) {
+  return (
+    <div>
+      {!hotSlices && <LoadingGrid count={4} />}
+      {hotSlices && !hotSlices?.length && <p>No one is working right now.</p>}
+    </div>
+  );
 }
 
 export default function HomePage() {
