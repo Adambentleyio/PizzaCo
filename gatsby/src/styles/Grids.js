@@ -14,6 +14,7 @@ export const ItemsGrid = styled.div`
   display: grid;
   gap: 2rem;
   grid-template-columns: 1fr 1fr;
+  margin-top: 4rem;
 `;
 
 export const ItemStyles = styled.div`

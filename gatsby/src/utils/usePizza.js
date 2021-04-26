@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import OrderContext from '../components/OrderContext';
 import attachNamesAndPrices from './attachNamesAndPrices';
 import calculateOrderTotal from './calculateOrderTotal';
@@ -34,6 +34,7 @@ export default function usePizza({ pizzas, values }) {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    console.log(loading, error, message);
 
     // gather all the data to send to email serverless function
     const body = {
@@ -43,7 +44,6 @@ export default function usePizza({ pizzas, values }) {
       email: values.email,
       treacle: values.treacle,
     };
-    console.log(body);
 
     // 4. send the data to a serverless function at customer checkout
     const res = await fetch(
@@ -56,14 +56,15 @@ export default function usePizza({ pizzas, values }) {
         body: JSON.stringify(body),
       }
     );
+
     const text = JSON.parse(await res.text());
 
     // check if everything worked
-
-    if (res.status > 400 && res.status >= 600) {
-      setLoading(false);
+    if (res.status > 399 && res.status < 600) {
+      setLoading(false); // turn off loading
       setError(text.message);
     } else {
+      // it worked!
       setLoading(false);
       setMessage('Success! Come on down for your pizza');
     }
